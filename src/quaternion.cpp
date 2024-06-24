@@ -11,6 +11,7 @@
 
 #include "geometry_utilities/quaternion.hpp"
 #include <cmath>
+#include <utility>
 Quaternion RPY::toQuaternion() const
 {
   double cr = std::cos(this->m_roll * 0.5);
@@ -96,11 +97,4 @@ RPY Quaternion::toRPY() const
   rpy.m_yaw = std::atan2(siny_cosp, cosy_cosp);
 
   return rpy;
-}
-
-double distanceBetweenTwoPoints(const Point& p1, const Point& p2)
-{
-  return std::sqrt(
-    std::pow(p2.m_x - p1.m_x, 2) + std::pow(p2.m_y - p1.m_y, 2)
-  );
 }

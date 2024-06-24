@@ -11,8 +11,9 @@
 
 #ifndef GEOMETRY_UTILITIES__QUATERNION_HPP_
 #define GEOMETRY_UTILITIES__QUATERNION_HPP_
-
+struct RPY;
 #include "geometry_utilities/rpy.hpp"
+
 
 struct Quaternion
 {

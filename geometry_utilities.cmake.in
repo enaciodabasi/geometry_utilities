@@ -4,6 +4,6 @@ set(geometry_utilities 1.0.0)
 
 set_and_check(geometry_utilities_INCLUDE_DIR "@PACKAGE_INCLUDE_INSTALL_DIR@")
 set_and_check(geometry_utilities_LIB_INSTALL_DIR "@PACKAGE_LIB_INSTALL_DIR@")
-set_and_check(geometry_utilities_LIBRARIES "@PACKAGE_LIBS@")
+set_and_check(geometry_utilities_LIBS "@PACKAGE_LIBS@")
 
 check_required_components(geometry_utilities)

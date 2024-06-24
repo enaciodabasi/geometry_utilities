@@ -5,14 +5,11 @@ if(CMAKE_CXX_COMPILER_ID MATCHES "(GNU|Clang)")
   add_compile_options(-Wall -Wextra -Werror=conversion -Werror=unused-but-set-variable -Werror=return-type)
 endif()
 
-find_package(Eigen3 REQUIRED)
-find_package(Matplot++ REQUIRED)
-
 set(SOURCES
-  src/utils_geometry.cpp
-  src/cubic_spline_interpolation.cpp
-  src/linear_interpolation.cpp
-  src/hermite_interpolation.cpp
+  src/point.cpp
+  src/quaternion.cpp
+  src/rpy.cpp
+  src/utils.cpp
 )
 
 add_library(
@@ -28,11 +25,9 @@ target_include_directories(
   ${CMAKE_PROJECT_NAME}
   PUBLIC
   include/
-  ${Eigen_INCLUDE_DIRS}
 )
 target_link_libraries(
   ${CMAKE_PROJECT_NAME}
-  ${Eigen_LIBRARIES}
 )
 
 set(GENERAL_INSTALL_DIR /usr/local)
@@ -70,13 +65,3 @@ write_basic_package_version_file(
 
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/${CMAKE_PROJECT_NAME}Config.cmake ${CMAKE_CURRENT_BINARY_DIR}/${CMAKE_PROJECT_NAME}ConfigVersion.cmake
   DESTINATION /usr/local/lib/cmake/${CMAKE_PROJECT_NAME})
-
-function(add_example EXAMPLE_NAME)
-  add_executable(${EXAMPLE_NAME} examples/${EXAMPLE_NAME}.cpp)
-  target_include_directories(${EXAMPLE_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include/)
-  target_link_libraries(${EXAMPLE_NAME} ${CMAKE_PROJECT_NAME} Matplot++::matplot)
-endfunction()
-
-add_example(natural_cubic_spline_example)
-add_example(linear_interpolation_example)
-add_example(hermite_interpolation_example)
